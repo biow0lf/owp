@@ -1,7 +1,8 @@
-log/*.log
-tmp/**/*
-tmp/*.txt
+.bundle
 db/*.sqlite3
+log/*.log
+tmp/
+
 config/database.yml
 config/config.yml
 utils/watchdog/watchdog.log
