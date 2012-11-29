@@ -7,6 +7,10 @@ gem 'rails', '3.0.17'
 
 gem 'sqlite3'
 
+gem 'net-ssh', '2.0.23'
+gem 'net-sftp', '2.0.4'
+gem 'ruby-net-ldap', '0.0.4'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
