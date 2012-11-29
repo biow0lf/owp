@@ -1,5 +1,5 @@
 class CreateRequests < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :requests do |t|
       t.column :subject, :string, :limit => 255
       t.column :content, :text
@@ -10,7 +10,7 @@ class CreateRequests < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     drop_table :requests
   end
 end

@@ -1,9 +1,9 @@
 class AddEnabledToUser < ActiveRecord::Migration
-  def self.up
+  def up
     add_column :users, :enabled, :boolean, :default => true
   end
 
-  def self.down
+  def down
     remove_column :users, :enabled
   end
 end

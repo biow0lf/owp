@@ -1,5 +1,5 @@
 class CreateIpPools < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :ip_pools do |t|
       t.string :first_ip
       t.string :last_ip
@@ -7,7 +7,7 @@ class CreateIpPools < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     drop_table :ip_pools
   end
 end

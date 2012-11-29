@@ -1,5 +1,5 @@
 class DefaultAdmin < ActiveRecord::Migration
-  def self.up
+  def up
     User.after_create.clear
     user = User.new
     user.login = 'admin'
@@ -8,7 +8,7 @@ class DefaultAdmin < ActiveRecord::Migration
     user.save(false)
   end
 
-  def self.down
+  def down
     user = User.find_by_login('admin')
     user.destroy
   end

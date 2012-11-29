@@ -1,5 +1,5 @@
 class CreateBackgroundJobs < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :background_jobs do |t|
       t.column :description, :string
       t.column :params, :string
@@ -7,7 +7,7 @@ class CreateBackgroundJobs < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     drop_table :background_jobs
   end
 end

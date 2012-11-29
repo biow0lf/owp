@@ -1,5 +1,5 @@
 class CreateBeanCounters < ActiveRecord::Migration
-  def self.up
+  def up
     create_table :bean_counters do |t|
       t.column :name, :string
       t.column :virtual_server_id, :integer
@@ -13,7 +13,7 @@ class CreateBeanCounters < ActiveRecord::Migration
     end
   end
 
-  def self.down
+  def down
     drop_table :bean_counters
   end
 end

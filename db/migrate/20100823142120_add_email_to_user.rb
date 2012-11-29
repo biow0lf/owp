@@ -1,9 +1,9 @@
 class AddEmailToUser < ActiveRecord::Migration
-  def self.up
+  def up
     add_column :users, :email, :string
   end
 
-  def self.down
+  def down
     remove_column :users, :email
   end
 end

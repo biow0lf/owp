@@ -1,9 +1,9 @@
 class AddExpirationDateToVirtualServer < ActiveRecord::Migration
-  def self.up
+  def up
     add_column :virtual_servers, :expiration_date, :date
   end
 
-  def self.down
+  def down
     remove_column :virtual_servers, :expiration_date
   end
 end
