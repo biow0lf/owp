@@ -29,7 +29,7 @@ will be used for OpenVZ containers:
 ## 2. Installation of the build
 
 
-Place build archive to the server where you plan to run the panel. Move 
+Place build archive to the server where you plan to run the panel. Move
 build archive content to destination directory, e.g. /opt/ovz-web-panel/.
 This can be achived using the following command:
 

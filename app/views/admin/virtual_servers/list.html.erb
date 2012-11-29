@@ -36,7 +36,7 @@ Ext.onReady(function() {
       { name: 'is_expired' }
     ]
   });
-  
+
   var selectionModel = new Ext.grid.CheckboxSelectionModel({ 
     listeners: {
       selectionchange: function(selectionModel) {
@@ -48,7 +48,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   var virtualServersGrid = new Ext.grid.GridPanel({
     id: 'virtualServersGrid',
     title: '<%= tjs('admin.virtual_servers.grid.title') %>',
@@ -74,7 +74,7 @@ Ext.onReady(function() {
         align: 'center',
         sortable: true,
         dataIndex: 'state'
-      }, { 
+      }, {
         id: 'identity',
         header: '<%= tjs('admin.virtual_servers.grid.column.identity') %>',
         width: 60,
@@ -152,7 +152,7 @@ Ext.onReady(function() {
       }] 
     }]
   });
-  
+
   Owp.layout.addToCenter(virtualServersGrid);
 
 });

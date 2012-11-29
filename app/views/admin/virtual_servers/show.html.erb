@@ -5,7 +5,7 @@
 
 <% javascript_tag do -%>
 Ext.onReady(function() {
-  
+
   <%= render :partial => 'edit_form' %>
 
   var store = new Ext.data.JsonStore({
@@ -18,13 +18,13 @@ Ext.onReady(function() {
       { name: 'value' }
     ]
   });
-  
+
   var virtualServerInfoGrid = new Ext.grid.GridPanel({
     id: 'virtualServerInfoGrid',
     title: '<%= tjs('admin.virtual_servers.show.grid.title') %>',
     region: 'center',
     loadMask: true,
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         virtualServerInfoGrid.getStore().reload();
@@ -47,7 +47,7 @@ Ext.onReady(function() {
       dataIndex: 'value'
     }])
   });
-  
+
   function viewStatDetails() {
     document.location.href = '<%= url_for :controller => 'admin/virtual-servers', :action => 'stat_details', :id => @virtual_server.id %>';
   }
@@ -62,7 +62,7 @@ Ext.onReady(function() {
       { name: 'value' }
     ]
   });
-  
+
   var virtualServerStatsGrid = new Ext.grid.GridPanel({
     id: 'virtualServerStatsGrid',
     title: '<%= tjs('admin.virtual_servers.stats.title') %>',
@@ -75,7 +75,7 @@ Ext.onReady(function() {
     stateId: 'virtualServerStatsGrid',
     iconCls: 'icon-items-list',
     store: statsStore,
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         virtualServerStatsGrid.getStore().reload();
@@ -103,7 +103,7 @@ Ext.onReady(function() {
               height: 14
             });
           }).defer(25);
-          
+
           return '<div><div style="float: left; padding-right: 10px;" id="' + progressBarId + '"></div> <div>' + value['text'] + '</div></div>';
         }
       }
@@ -115,7 +115,7 @@ Ext.onReady(function() {
       handler: viewStatDetails
     }]
   });
-  
+
   var panelsWrapper = new Ext.Panel({
     layout: 'border',
     border: false,
@@ -139,7 +139,7 @@ Ext.onReady(function() {
       }
     });
   }
-  
+
   var limitsAction = function() {
     var storeLimits = new Ext.data.JsonStore({
       id: 'storeLimits',
@@ -152,7 +152,7 @@ Ext.onReady(function() {
         { name: 'hard_limit' }
       ]
     });
-  
+
     var formLimits = new Owp.form.BasicForm({
       labelWidth: 180,
       waitMsgTarget: !Ext.isGecko,
@@ -209,9 +209,9 @@ Ext.onReady(function() {
         iconCls: 'icon-items-list'
       }]
     });
-      
+
     var formButtons = null;
-    
+
     <% if @current_user.superadmin? %>
       formButtons = [{
         text: '<%= tjs('form.button.save') %>',
@@ -222,7 +222,7 @@ Ext.onReady(function() {
           Ext.StoreMgr.get('storeLimits').query().each(function(item) {
             limits.push(item.data);
           });
-        
+
           formLimits.form.submit({
             params: { 'limits': Ext.util.JSON.encode(limits) },
             waitMsg: '<%= tjs('form.loading') %>',
@@ -242,7 +242,7 @@ Ext.onReady(function() {
         }
       }];
     <% end -%>
-  
+
     windowLimitsForm = new Ext.Window({
       title: '<%= tjs('admin.virtual_servers.form.limits.title') %>',
       iconCls: 'icon-items-list',
@@ -256,10 +256,10 @@ Ext.onReady(function() {
       items: formLimits,
       buttons: formButtons
     });
-    
+
     windowLimitsForm.show();
   }
-  
+
   var reinstallAction = function() {
     <% if @current_user.can_select_os_on_reinstall? %>
       var osTemplatesStore = new Ext.data.JsonStore({
@@ -271,7 +271,7 @@ Ext.onReady(function() {
         data: <%= @virtual_server.hardware_server.os_templates.map { |item| { :id => item.id, :name => item.name, }}.to_json %>
       });
     <% end -%>
-  
+
     var formReinstall = new Owp.form.BasicForm({
       labelWidth: 150,
       waitMsgTarget: !Ext.isGecko,
@@ -310,8 +310,8 @@ Ext.onReady(function() {
         store: osTemplatesStore,
         value: '<%= @virtual_server.orig_os_template %>'
       }<% end -%>]
-    });  
-    
+    });
+
     var windowReinstall = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.virtual_servers.form.reinstall.title') %>',
       iconCls: 'icon-window-reinstall',
@@ -323,7 +323,7 @@ Ext.onReady(function() {
       bodyStyle: 'padding: 5px;',
       resizable: false,
       items: formReinstall,
-      
+
       buttons: [{
         text: '<%= tjs('admin.virtual_servers.form.reinstall.button.reinstall') %>',
         iconCls: 'icon-button-save',
@@ -350,14 +350,14 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowReinstall.on('show', function() {
       formReinstall.getForm().reset();
     });
-    
+
     windowReinstall.show();
   }
-  
+
   var changeSettingsAction = function() {
     var formChangeSettings = new Owp.form.BasicForm({
       labelWidth: 180,
@@ -403,8 +403,8 @@ Ext.onReady(function() {
           name: 'search_domain'
         }]
       }]
-    });  
-    
+    });
+
     var windowChangeSettings = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.virtual_servers.form.change_settings.title') %>',
       iconCls: 'icon-window-edit',
@@ -416,7 +416,7 @@ Ext.onReady(function() {
       bodyStyle: 'padding: 5px;',
       resizable: false,
       items: formChangeSettings,
-      
+
       buttons: [{
         text: '<%= tjs('form.button.save') %>',
         iconCls: 'icon-button-save',
@@ -443,7 +443,7 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowChangeSettings.on('show', function() {
       formChangeSettings.getForm().load({
         waitMsg: '<%= tjs('form.loading') %>',
@@ -453,14 +453,14 @@ Ext.onReady(function() {
         url: '<%= url_for :controller => 'admin/virtual-servers', :action => 'load_data', :id => @virtual_server.id %>'
       });
     });
-    
+
     windowChangeSettings.show();
   }
-  
+
   var editVirtualServer = function() {
     showVirtualServerEditForm('edit', virtualServerInfoGrid, virtualServerStatsGrid);
   }
-  
+
   var consoleAction = function() {
     var formConsole = new Owp.form.BasicForm({
       labelWidth: 100,
@@ -487,8 +487,8 @@ Ext.onReady(function() {
         cls: 'monospace-field',
         anchor: '100% -30'
       }]
-    });  
-    
+    });
+
     var windowConsole = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.virtual_servers.form.console.title') %>',
       iconCls: 'icon-window-console',
@@ -500,7 +500,7 @@ Ext.onReady(function() {
       bodyStyle: 'padding: 5px;',
       resizable: true,
       items: formConsole,
-      
+
       buttons: [{
         text: '<%= tjs('admin.virtual_servers.form.console.button.run') %>',
         iconCls: 'icon-button-run',
@@ -527,14 +527,14 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowConsole.show();
   }
-  
+
   var backupAction = function() {
     document.location.href = '<%= url_for :controller => 'admin/backups', :action => 'list', :virtual_server_id => @virtual_server.id %>';
   }
-  
+
   var cloneAction = function() {
     var formClone = new Owp.form.BasicForm({
       labelWidth: 180,
@@ -589,8 +589,8 @@ Ext.onReady(function() {
           name: 'host_name'
         }]
       }]
-    });  
-    
+    });
+
     var windowClone = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.virtual_servers.form.clone.title') %>',
       iconCls: 'icon-window-clone',
@@ -602,7 +602,7 @@ Ext.onReady(function() {
       bodyStyle: 'padding: 5px;',
       resizable: false,
       items: formClone,
-      
+
       buttons: [{
         text: '<%= tjs('form.button.save') %>',
         iconCls: 'icon-button-save',
@@ -627,7 +627,7 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowClone.show();
   }
 
@@ -856,14 +856,14 @@ Ext.onReady(function() {
 
     mainContentCenterPanel.getTopToolbar().insertButton(0, '-');
   }
-  
+
   mainContentCenterPanel.getTopToolbar().insertButton(0, {
     text: '<%= tjs('admin.virtual_servers.grid.button.limits') %>',
     iconCls: 'icon-items-list',
     ref: '../limitsButton',
     handler: limitsAction
   });
-  
+
   <% if @current_user.superadmin? %>
     mainContentCenterPanel.getTopToolbar().insertButton(0, {
       text: '<%= tjs('admin.virtual_servers.grid.button.change_settings') %>',
@@ -879,7 +879,7 @@ Ext.onReady(function() {
       handler: changeSettingsAction
     });
   <% end %>
-  
+
   mainContentCenterPanel.getTopToolbar().insertButton(0, {
     text: '<%= tjs('admin.virtual_servers.grid.button.change_state') %>',
     iconCls: 'icon-button-change-state',
@@ -896,9 +896,9 @@ Ext.onReady(function() {
       text: '<%= tjs('admin.virtual_servers.grid.button.restart') %>',
       iconCls: 'icon-button-restart-server',
       handler: changeStateAction.createCallback('restart')
-    }] 
+    }]
   });
-  
+
   mainContentCenterPanel.doLayout()
 
 });

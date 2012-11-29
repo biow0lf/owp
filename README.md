@@ -16,13 +16,13 @@ Table of contents:
 
 ## 1. License
 
-This software is licensed under the terms of the GPL 2.0 license. 
+This software is licensed under the terms of the GPL 2.0 license.
 Additional information can be found in LICENSE file.
 
 
 ## 2. Description
 
-OpenVZ Web Panel is a GUI web-based frontend for controlling of the physical 
+OpenVZ Web Panel is a GUI web-based frontend for controlling of the physical
 and virtual servers with the OpenVZ virtualization technology.
 
 
@@ -42,8 +42,8 @@ See INSTALL file for installation instructions.
 
 ## 5. Usage
 
-By default you can visit http://your-host-or-ip:3000 to see the web panel. Login 
-page should be shown.  
+By default you can visit http://your-host-or-ip:3000 to see the web panel. Login
+page should be shown.
 Default administrator's login and password are: admin/admin. Do not forget to
 change default password after the first login (using "My Profile" link).
 

@@ -6,7 +6,7 @@ Ext.onReady(function() {
 
   function showHwServerEditForm(mode) {
     var fields = [];
-    
+
     fields.push({
       name: 'id',
       xtype: 'hidden'
@@ -15,7 +15,7 @@ Ext.onReady(function() {
       name: 'host',
       allowBlank: false
     });
-    
+
     if ('add' == mode) {
       fields.push({
         fieldLabel: '<%= tjs('admin.hardware_servers.form.connect_server.field.root_password') %>',
@@ -23,7 +23,7 @@ Ext.onReady(function() {
         inputType: 'password'
       });
     }
-    
+
     fields.push({
       fieldLabel: '<%= tjs('admin.hardware_servers.form.connect_server.field.description') %>',
       name: 'description'
@@ -49,7 +49,7 @@ Ext.onReady(function() {
         xtype: 'checkbox'
       }]
     });
-  
+
     var formEditServer = new Owp.form.BasicForm({
       labelWidth: 150,
       autoHeight: true,
@@ -64,7 +64,7 @@ Ext.onReady(function() {
       }],
       items: fields
     });
-    
+
     var windowEditServer = new Owp.form.BasicFormWindow({
       title: ('add' == mode)
         ? '<%= tjs('admin.hardware_servers.form.connect_server.title') %>'
@@ -76,7 +76,7 @@ Ext.onReady(function() {
       plain: true,
       bodyStyle: 'padding:5px;',
       resizable: false,
-      items: formEditServer,        
+      items: formEditServer,
       buttons: [{
         text: ('add' == mode)
           ? '<%= tjs('admin.hardware_servers.form.connect_server.button_connect') %>'
@@ -104,14 +104,14 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowEditServer.on('show', function() {
       if ('add' == mode) {
         formEditServer.getForm().reset();
-        
+
         var daemonPortField = formEditServer.getForm().findField('daemon_port');
         daemonPortField.setValue(<%= AppConfig.hw_daemon.port %>);
-        
+
         windowEditServer.focus();
       } else {
         var selectedNode = Ext.getCmp('hwServersGrid').getSelectionModel().getSelected();
@@ -128,19 +128,19 @@ Ext.onReady(function() {
         formEditServer.getForm().findField('id').setValue(selectedNode.id);
       }
     });
-    
+
     windowEditServer.show();
   }
-  
+
   function addHwServer() {
     showHwServerEditForm('add');
   }
-  
+
   function editHwServer() {
     showHwServerEditForm('edit');
   }
-  
-  function removeHwServer() {            
+
+  function removeHwServer() {
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
       '<%= tjs('admin.hardware_servers.form.disconnect_server.sure_to_disconnect') %>',
@@ -159,12 +159,12 @@ Ext.onReady(function() {
       }
     );
   }
-  
+
   function seeDetails() {
     var selectedNode = Ext.getCmp('hwServersGrid').getSelectionModel().getSelected();
     document.location.href = '<%= url_for :controller => 'admin/hardware-servers', :action => 'show' %>?id=' + selectedNode.id;
   }
-  
+
   function syncHwServer() {
     Owp.list.groupAction({
       gridName: 'hwServersGrid',
@@ -176,13 +176,13 @@ Ext.onReady(function() {
       }
     });
   }
-  
+
   function rebootHwServer() {
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
       '<%= tjs('admin.hardware_servers.form.reboot_server.sure_to_reboot') %>',
       function(button, text) {
-        if ('yes' == button) { 
+        if ('yes' == button) {
           Owp.list.groupAction({
             gridName: 'hwServersGrid',
             url: '<%= url_for :controller => 'admin/hardware-servers', :action => 'reboot' %>',
@@ -210,7 +210,7 @@ Ext.onReady(function() {
       { name: 'description' }
     ]
   });
-  
+
   var selectionModel = new Ext.grid.CheckboxSelectionModel({ 
     listeners: {
       selectionchange: function(selectionModel) {
@@ -223,7 +223,7 @@ Ext.onReady(function() {
           hwServersGrid.syncButton.disable();
           hwServersGrid.rebootButton.disable();
         }
-        
+
         if (1 == selectionModel.getCount()) {
           hwServersGrid.detailsButton.enable();
           hwServersGrid.editButton.enable();
@@ -234,7 +234,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   var hwServersGrid = new Ext.grid.GridPanel({
     id: 'hwServersGrid',
     store: store,
@@ -256,7 +256,7 @@ Ext.onReady(function() {
         },
         sortable: true,
         dataIndex: 'host'
-      }, { 
+      }, {
         id: 'virtualServers',
         header: '<%= tjs('admin.hardware_servers.grid.column.virtual_servers') %>',
         sortable: true,

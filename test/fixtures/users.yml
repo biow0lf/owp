@@ -5,7 +5,7 @@ admin:
   crypted_password: 813f6adc5a8fab8f268e1fec5394d196896365fe # monkey
   created_at: <%= 5.days.ago.to_s :db  %>
   role_id: 1
-  
+
 john:
   id: 2
   login: john

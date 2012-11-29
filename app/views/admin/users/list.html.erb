@@ -63,7 +63,7 @@ Ext.onReady(function() {
         })
       }]
     });
-    
+
     var windowEditUser = new Owp.form.BasicFormWindow({
       title: ('add' == mode)
         ? '<%= tjs('admin.users.form.create.title') %>'
@@ -104,7 +104,7 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowEditUser.on('show', function() {
       if ('add' == mode) {
         formEditUser.getForm().reset();
@@ -124,24 +124,24 @@ Ext.onReady(function() {
         formEditUser.getForm().findField('id').setValue(selectedNode.id);
       }
     });
-    
+
     windowEditUser.show();
   }
 
   function addUser() {
     showUserEditForm('add');
   }
-  
+
   function editUser() {
     showUserEditForm('edit');
   }
-  
+
   function removeUser() {
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
       '<%= tjs('admin.users.form.remove_user.sure_to_remove') %>',
       function(button, text) {
-        if ('yes' == button) { 
+        if ('yes' == button) {
           Owp.list.groupAction({
             gridName: 'usersGrid',
             url: '<%= url_for :controller => 'admin/users', :action => 'delete' %>',
@@ -155,7 +155,7 @@ Ext.onReady(function() {
       }
     );
   }
-  
+
   var changeUserState = function(action) {
     Owp.list.groupAction({
       gridName: 'usersGrid',
@@ -209,7 +209,7 @@ Ext.onReady(function() {
           usersGrid.enableButton.disable();
           usersGrid.disableButton.disable();
         }
-        
+
         if (1 == selectionModel.getCount()) {
           usersGrid.editButton.enable();
         } else {
@@ -224,7 +224,7 @@ Ext.onReady(function() {
     store: store,
     title: '<%= tjs('admin.users.grid.title') %>',
     loadMask: true,
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         usersGrid.getStore().reload();
@@ -322,9 +322,9 @@ Ext.onReady(function() {
   });
 
   Owp.layout.addToCenter(usersGrid);
-  
+
   var mainContentCenterPanel = Ext.getCmp('mainContentCenterPanel');
-  
+
   mainContentCenterPanel.getTopToolbar().insertButton(0, {
     text: '<%= tjs('admin.users.top_toolbar.roles') %>',
     icon: '<%= image_path 'user_suit.png' %>',
@@ -332,7 +332,7 @@ Ext.onReady(function() {
       document.location.href = '<%= url_for :controller => 'admin/roles', :action => 'list' %>';
     }
   });
-  
+
   mainContentCenterPanel.doLayout();
 });
 <% end -%>

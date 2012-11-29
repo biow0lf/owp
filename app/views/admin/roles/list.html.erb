@@ -51,7 +51,7 @@ Ext.onReady(function() {
         } }.to_json %>
       }]
     });
-    
+
     var windowEditRole = new Owp.form.BasicFormWindow({
       title: ('add' == mode)
         ? '<%= tjs('admin.roles.form.create.title') %>'
@@ -92,7 +92,7 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowEditRole.on('show', function() {
       if ('add' == mode) {
         formEditRole.getForm().reset();
@@ -123,18 +123,18 @@ Ext.onReady(function() {
         formEditRole.getForm().findField('id').setValue(selectedNode.id);
       }
     });
-    
+
     windowEditRole.show();
   }
 
   function addRole() {
     showRoleEditForm('add');
   }
-  
+
   function editRole() {
     showRoleEditForm('edit');
   }
-  
+
   function removeRole() {
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
@@ -154,7 +154,7 @@ Ext.onReady(function() {
       }
     );
   }
-  
+
   var store = new Ext.data.JsonStore({
     url: '<%= url_for :controller => 'admin/roles', :action => 'list_data' %>',
     root: 'data',
@@ -177,7 +177,7 @@ Ext.onReady(function() {
         } else {
           rolesGrid.removeButton.disable();
         }
-        
+
         if (1 == selectionModel.getCount()) {
           rolesGrid.editButton.enable();
         } else {
@@ -186,7 +186,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   var rolesGrid = new Ext.grid.GridPanel({
     id: 'rolesGrid',
     store: store,

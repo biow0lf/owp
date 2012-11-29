@@ -19,7 +19,7 @@ Ext.onReady(function() {
         allowBlank: false
       }]
     });
-    
+
     var windowAddComment = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.requests.comments.form.add.title') %>',
       iconCls: 'icon-window-add',
@@ -54,7 +54,7 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowAddComment.show();
   }
 
@@ -79,7 +79,7 @@ Ext.onReady(function() {
     store: store,
     title: '<%= tjs('admin.requests.comments.grid.title') %>',
     loadMask: true,
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         commentsGrid.getStore().reload();
@@ -98,7 +98,7 @@ Ext.onReady(function() {
         width: 130,
         sortable: true,
         dataIndex: 'author'
-      }, { 
+      }, {
         id: 'content',
         header: '<%= tjs('admin.requests.comments.grid.column.content') %>',
         sortable: true,
@@ -122,11 +122,11 @@ Ext.onReady(function() {
       icon: '<%= image_path 'add.png' %>'
     }]
   });
-  
+
   Owp.layout.addToCenter(commentsGrid);
-  
+
   var mainContentCenterPanel = Ext.getCmp('mainContentCenterPanel');
-  
+
   <% if @current_user.superadmin? || !@request.opened %>
     mainContentCenterPanel.getTopToolbar().insertButton(0, {
       text: '<%= tjs('admin.requests.grid.button.' + (@request.opened ? 'solve' : 'reopen')) %>',
@@ -136,7 +136,7 @@ Ext.onReady(function() {
       }
     });
   <% end -%>
-  
+
   mainContentCenterPanel.doLayout();
 });
 <% end -%>

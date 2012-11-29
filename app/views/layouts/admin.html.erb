@@ -1,5 +1,5 @@
 <%= render :partial => 'layouts/header' %>
-  
+
   <% javascript_tag do -%>
     Ext.onReady(function() {
       var formMyProfile = new Owp.form.BasicForm({
@@ -42,8 +42,8 @@
           value: '<%= escape_javascript @current_user.email %>',
           vtype: 'email'
         }]
-      });  
-      
+      });
+
       var windowMyProfile = new Owp.form.BasicFormWindow({
         title: '<%= tjs('admin.my_profile.title') %>',
         iconCls: 'icon-window-my-profile',
@@ -56,7 +56,7 @@
         resizable: false,
         items: formMyProfile,
         closeAction: 'hide',
-        
+
         buttons: [{
           text: '<%= tjs('form.button.save') %>',
           iconCls: 'icon-button-save',
@@ -81,11 +81,11 @@
           }
         }]
       });
-      
+
       windowMyProfile.on('show', function() {
         formMyProfile.getForm().reset();
-      });  
-    
+      });
+
       var mainMenu = new Ext.tree.AsyncTreeNode({
         expandable: false,
         expanded: true,
@@ -188,12 +188,12 @@
           }]
         }]
       });
-      
+
       <%= render :partial => 'layouts/search' if @current_user.superadmin? %>
 
       function getTopBar() {
         var upLevelLink = '<%= @up_level %>';
-      
+
         var items = [{
           xtype: 'tbfill'
         }, <% if @current_user.superadmin? %> {
@@ -219,7 +219,7 @@
           enableOverflow: true,
           items: items
         });
-      
+
         return topBar;
       }
 
@@ -256,7 +256,7 @@
             collapsible: true,
             margins: '5 0 5 5',
             layout: 'accordion',
-            layoutConfig: { animate: true },                
+            layoutConfig: { animate: true },
             xtype: 'treepanel',
             loader: new Ext.tree.TreeLoader(),
             rootVisible: false,
@@ -298,11 +298,11 @@
       });
     });
   <% end -%>
-  
+
   <div id='main-menu'></div>
-  
+
   <div id='main-content'></div>
-  
+
   <div style="display: none;"><%= yield %></div>
-  
+
 <%= render :partial => 'layouts/footer' %>

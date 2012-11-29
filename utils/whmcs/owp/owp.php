@@ -1,6 +1,6 @@
 <?php
 /**
- * Description: Module for OpenVZ Web Panel integration. 
+ * Description: Module for OpenVZ Web Panel integration.
  * Site: http://code.google.com/p/ovz-web-panel/
  */
 
@@ -41,7 +41,7 @@ function owp_ConfigOptions()
         "OS" => array("Type" => "dropdown", "Options" => join(',', $osTemplates)),
         "User Role" => array("Type" => "dropdown", "Options" => join(',', $userRoles)),
     );
-    
+
     return $configarray;
 }
 
@@ -123,12 +123,12 @@ function owp_CreateAccount($params)
     return "success";
 }
 
-function owp_TerminateAccount($params) 
+function owp_TerminateAccount($params)
 {
     $username = $params["username"];
     $result = _owp_apiCall('users/get_by_login', array('login' => $username));
     $userId = (int)$result->id;
-    
+
     $result = _owp_apiCall('users/delete', array('id' => $userId));
 
     if ('error' == $result->getName()) {
@@ -139,8 +139,8 @@ function owp_TerminateAccount($params)
     $result = _owp_apiCall('virtual_servers/get_by_host', array('host' => $domain));
     $serverId = (int)$result->id;
 
-    $result = _owp_apiCall('virtual_servers/delete', array('id' => $serverId));   
- 
+    $result = _owp_apiCall('virtual_servers/delete', array('id' => $serverId));
+
     if ('error' == $result->getName()) {
         return (string)$result->message;
     }
@@ -148,7 +148,7 @@ function owp_TerminateAccount($params)
     return "success";
 }
 
-function owp_SuspendAccount($params) 
+function owp_SuspendAccount($params)
 {
     $username = $params["username"];
     $result = _owp_apiCall('users/get_by_login', array('login' => $username));
@@ -173,7 +173,7 @@ function owp_SuspendAccount($params)
     return "success";
 }
 
-function owp_UnsuspendAccount($params) 
+function owp_UnsuspendAccount($params)
 {
     $username = $params["username"];
     $result = _owp_apiCall('users/get_by_login', array('login' => $username));
@@ -184,7 +184,7 @@ function owp_UnsuspendAccount($params)
     if ('error' == $result->getName()) {
         return (string)$result->message;
     }
-    
+
     $domain = $params["domain"];
     $result = _owp_apiCall('virtual_servers/get_by_host', array('host' => $domain));
     $serverId = (int)$result->id;
@@ -229,12 +229,12 @@ function owp_LoginLink($params)
  * Module private methods
  */
 
-function _owp_getHost($params) 
+function _owp_getHost($params)
 {
     return ('' != $params['serverhostname']) ? $params['serverhostname'] : $params['serverip'];
 }
 
-function _owp_apiCall($method, $params = '') 
+function _owp_apiCall($method, $params = '')
 {
     $queryResult = mysql_query("SELECT * FROM `tblservers` WHERE `type` = 'owp' LIMIT 1");
     $serverInfo = mysql_fetch_array($queryResult);
@@ -242,12 +242,12 @@ function _owp_apiCall($method, $params = '')
     $host = $serverInfo['hostname'];
     $user = $serverInfo['username'];
     $password = decrypt($serverInfo['password']);
-    
+
     if (is_array($params)) {
         $params = http_build_query($params);
     }
     # Check if CURL is compiled with PHP, fall back to fopen if not.
-    if (extension_loaded('curl')) {    
+    if (extension_loaded('curl')) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "http://$host/api/$method?$params");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

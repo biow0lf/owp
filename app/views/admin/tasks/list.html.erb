@@ -15,15 +15,15 @@ Ext.onReady(function() {
       { name: 'description', mapping: 't_description' }
     ]
   });
-  
+
   var selectionModel = new Ext.grid.RowSelectionModel();
-  
+
   var tasksGrid = new Ext.grid.GridPanel({
     id: 'tasksGrid',
     store: store,
     title: '<%= tjs('admin.task.grid.title') %>',
     loadMask: true,
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         tasksGrid.getStore().reload();
@@ -47,13 +47,13 @@ Ext.onReady(function() {
         align: 'center',
         sortable: true,
         dataIndex: 'status'
-      }, { 
+      }, {
         id: 'id',
         header: '<%= tjs('admin.task.grid.column.id') %>',
         width: 50,
         sortable: true,
         dataIndex: 'id'
-      }, { 
+      }, {
         id: 'description',
         header: '<%= tjs('admin.task.grid.column.description') %>',
         sortable: true,

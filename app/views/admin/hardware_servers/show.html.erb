@@ -18,21 +18,21 @@ Ext.onReady(function() {
       }
     });
   }
-  
+
   function addVirtualServer() {
     showVirtualServerEditForm('add', virtualServersGrid);
   }
-  
+
   function editVirtualServer() {
     showVirtualServerEditForm('edit', virtualServersGrid);
   }
-  
-  function removeVirtaulServer() {            
+
+  function removeVirtaulServer() {
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
       '<%= tjs('admin.virtual_servers.form.remove_server.sure_to_remove') %>',
       function(button, text) {
-        if ('yes' == button) { 
+        if ('yes' == button) {
           Owp.list.groupAction({
             gridName: 'virtualServersGrid',
             url: '<%= url_for :controller => 'admin/virtual-servers', :action => 'delete' %>',
@@ -68,7 +68,7 @@ Ext.onReady(function() {
       { name: 'description' }
     ]
   });
-  
+
   var selectionModel = new Ext.grid.CheckboxSelectionModel({
     renderer: function(value, metaData) {
       metaData.cellAttr = 'rowspan="2"';
@@ -83,7 +83,7 @@ Ext.onReady(function() {
           virtualServersGrid.removeButton.disable();
           virtualServersGrid.changeStateButton.disable();
         }
-        
+
         if (1 == selectionModel.getCount()) {
           virtualServersGrid.editButton.enable();
         } else {
@@ -92,7 +92,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   var virtualServersGrid = new Ext.grid.GridPanel({
     id: 'virtualServersGrid',
     title: '<%= tjs('admin.virtual_servers.grid.title') %>',
@@ -100,7 +100,7 @@ Ext.onReady(function() {
     store: store,
     loadMask: true,
     region: 'center',
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         virtualServersGrid.getStore().reload();
@@ -115,8 +115,8 @@ Ext.onReady(function() {
         }
       },
       columns: [
-        selectionModel, 
-        { 
+        selectionModel,
+        {
           id: 'state',
           header: '<%= tjs('admin.virtual_servers.grid.column.state') %>',
           renderer: function(value, metaData) {
@@ -128,7 +128,7 @@ Ext.onReady(function() {
           align: 'center',
           sortable: true,
           dataIndex: 'state'
-        }, { 
+        }, {
           id: 'identity',
           header: '<%= tjs('admin.virtual_servers.grid.column.identity') %>',
           width: 60,
@@ -222,7 +222,7 @@ Ext.onReady(function() {
     }, {
       text: '<%= tjs('admin.virtual_servers.grid.button.destroy') %>', 
       cls: 'x-btn-text-icon',
-      icon: '<%= image_path 'delete.png' %>',     
+      icon: '<%= image_path 'delete.png' %>',
       handler: removeVirtaulServer,
       ref: '../removeButton',
       disabled: true
@@ -233,7 +233,7 @@ Ext.onReady(function() {
       icon: '<%= image_path 'wrench.png' %>',
       ref: '../editButton',
       disabled: true
-    }, '-', {      
+    }, '-', {
       text: '<%= tjs('admin.virtual_servers.grid.button.change_state') %>',
       iconCls: 'icon-button-change-state',
       ref: '../changeStateButton',
@@ -250,7 +250,7 @@ Ext.onReady(function() {
         text: '<%= tjs('admin.virtual_servers.grid.button.restart') %>',
         iconCls: 'icon-button-restart-server',
         handler: changeStateAction.createCallback('restart')
-      }] 
+      }]
     }]
   });
 
@@ -306,13 +306,13 @@ Ext.onReady(function() {
               height: 14
             });
           }).defer(25);
-          
+
           return '<div><div style="float: left; padding-right: 10px;" id="' + progressBarId + '"></div> <div>' + value['text'] + '</div></div>';
         }
       }
     }])
   });
-  
+
   var panelsWrapper = new Ext.Panel({
     layout: 'border',
     border: false,
@@ -320,9 +320,9 @@ Ext.onReady(function() {
   });
 
   Owp.layout.addToCenter(panelsWrapper);
-  
+
   var mainContentCenterPanel = Ext.getCmp('mainContentCenterPanel');
-  
+
   mainContentCenterPanel.getTopToolbar().insertButton(0, {
     text: '<%= tjs('admin.hardware_servers.top_toolbar.server_templates') %>',
     icon: '<%= image_path 'package.png' %>',
@@ -330,7 +330,7 @@ Ext.onReady(function() {
       document.location.href = '<%= url_for :controller => 'admin/server-templates', :action => 'list', :hardware_server_id => @hardware_server.id %>';
     }
   });
-  
+
   mainContentCenterPanel.getTopToolbar().insertButton(0, {
     text: '<%= tjs('admin.hardware_servers.top_toolbar.os_templates') %>',
     icon: '<%= image_path 'tux.png' %>',
@@ -338,7 +338,7 @@ Ext.onReady(function() {
       document.location.href = '<%= url_for :controller => 'admin/os-templates', :action => 'list', :hardware_server_id => @hardware_server.id %>';
     }
   });
-  
+
   mainContentCenterPanel.doLayout();
 });
 <% end -%>

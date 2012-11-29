@@ -1,5 +1,5 @@
 <%
-  @page_title = t('admin.virtual_servers.stat_details.title', 
+  @page_title = t('admin.virtual_servers.stat_details.title',
     :name => @virtual_server.host_name.blank? ? "#" + @virtual_server.identity.to_s : @virtual_server.host_name )
 %>
 <% @page_icon = 'chart_bar.png' %>
@@ -62,7 +62,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   var ramUsageStore = new Ext.data.JsonStore({
     fields: [ 'time', 'usage' ],
     data: <%= @ram_usage.to_json %>
@@ -90,7 +90,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   var chartsPanelsWrapper = new Ext.Panel({
     layout: 'hbox',
     border: false,
@@ -113,7 +113,7 @@ Ext.onReady(function() {
       { name: 'alert' }
     ]
   });
-  
+
   var virtualServerStatsGrid = new Ext.grid.GridPanel({
     id: 'virtualServerStatsGrid',
     title: '<%= tjs('admin.virtual_servers.stat_details.grid.title') %>',
@@ -162,7 +162,7 @@ Ext.onReady(function() {
       dataIndex: 'failcnt'
     }])
   });
-  
+
   var panelsWrapper = new Ext.Panel({
     layout: 'border',
     border: false,

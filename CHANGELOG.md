@@ -64,7 +64,7 @@ added:
 * Make IP address for virtual server an optional field (issue 216).
 * Fix problem with virtual server statistics page if server is out of sync
   (issue 118).
-* Fix problems with expiration dates on CentOS (issue 217). 
+* Fix problems with expiration dates on CentOS (issue 217).
 
 ## OpenVZ Web Panel 1.6 (2010-11-07)
 
@@ -170,7 +170,7 @@ This version is a beta release. The following items were fixed and/or added:
 * Ability to see/change virtual server advanced limits (issue 63).
 * Improved visualisation of OS template installation process (issue 62).
 * Ability to clear log (issue 61).
-* Fixed redirect on original page after clicking Help link (issue 60). 
+* Fixed redirect on original page after clicking Help link (issue 60).
 * Detect default OS template for new server creation (issue 59).
 * Prohibit attempts to use Ruby 1.9 (issue 58).
 * Redirect to dashboard in case of invalid URL access (issue 57).
@@ -213,7 +213,7 @@ This version is a preview release. The following items were fixed and/or added:
 * Ability to remove OS template (issue 24).
 * Automatic installer (issue 25).
 * Dutch language support (issue 32).
-* New icons for showing of virtual server state (issue 33). 
+* New icons for showing of virtual server state (issue 33).
 * Fixed issue with wrong OS template detection (issue 27).
 * Ext JS was upgraded to version 3.1.0.
 

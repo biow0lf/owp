@@ -7,7 +7,7 @@ Ext.onReady(function() {
   var container = new Ext.Container({
     layout: 'anchor'
   });
-  
+
   <% if !@watchdog_alive %>
     // TODO: add localization
     var watchdogPanel = new Ext.Panel({
@@ -17,10 +17,10 @@ Ext.onReady(function() {
         + 'Unable to connect to watchdog daemon. Probably it is not running. '
         + '</p>'
     });
-    
+
     container.add(watchdogPanel);
   <% end -%>
-  
+
   <% if @updates %>
     var updatesPanel = new Ext.Panel({
       header: false,
@@ -30,7 +30,7 @@ Ext.onReady(function() {
         + '<%= tjs('admin.dashboard.updates.update_command', :command => '<span class="no-wrap">' + @updates[:update_command] + '</span>') %>'
         + '</p>'
     });
-    
+
     container.add(updatesPanel);
   <% end -%>
 
@@ -41,9 +41,9 @@ Ext.onReady(function() {
     cls: 'panel-dashboard',
     html: '<p>' + '<%= tjs('admin.dashboard.intro.text') %>' + '</p>'
   });
-  
+
   container.add(introPanel);
-  
+
   var profilePanel = new Owp.Panel({
     title: '<%= tjs('admin.dashboard.profile.title') %>',
     collapsible: true,
@@ -51,12 +51,12 @@ Ext.onReady(function() {
     cls: 'panel-dashboard',
     html: '<p>' + '<%= tjs('admin.dashboard.profile.text', :login => '<b>' + @current_user.full_name + '</b>') %>' + '</p>'
   });
-  
+
   container.add(profilePanel);
-  
+
   <% if @current_user.superadmin? %>
     var storeData = <%= @stats_data.to_json %> ;
-    
+
     var store = new Ext.data.ArrayStore({
       fields: [
         { name: 'icon' },
@@ -64,9 +64,9 @@ Ext.onReady(function() {
         { name: 'value' }
       ]
     });
-    
+
     store.loadData(storeData);
-    
+
     var statsGrid = new Owp.grid.GridPanel({
       id: 'statsGrid',
       title: '<%= tjs('admin.dashboard.stats_grid.title') %>',
@@ -91,12 +91,12 @@ Ext.onReady(function() {
         id: 'value',
         header: '<%= tjs('admin.dashboard.stats_grid.column.value') %>',
         dataIndex: 'value'
-      }])    
+      }])
     });
-    
+
     container.add(statsGrid);
   <% end -%>
-  
+
   Owp.layout.addToCenter(container);
 });
 <% end -%>

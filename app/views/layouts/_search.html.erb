@@ -47,7 +47,7 @@ var formSearch = new Owp.form.BasicForm({
     },
     searchGrid
   ]
-});  
+});
 
 var windowSearch = new Owp.form.BasicFormWindow({
   title: '<%= tjs('admin.search.form.title') %>',
@@ -73,7 +73,7 @@ var windowSearch = new Owp.form.BasicFormWindow({
     ref: '../submitButton',
     handler: function() {
       var queryString = formSearch.find('name', 'query')[0].getValue();
-      
+
       if (queryString) {
         searchGrid.show();
         windowSearch.syncSize();

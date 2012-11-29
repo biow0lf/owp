@@ -41,7 +41,7 @@ Ext.onReady(function() {
         name: 've_state'
       }]
     });
-    
+
     var windowBackup = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.backups.form.create.title') %>',
       iconCls: 'icon-window-add',
@@ -83,26 +83,26 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowBackup.show();
   }
-  
+
   function restoreServer() {
     var selectedBackupId = Ext.getCmp('backupsGrid').getSelectionModel().getSelected().id;
-    
+
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
       '<%= tjs('admin.backups.form.restore.sure_to_restore') %>',
       function(button, text) {
         if ('yes' == button) { 
           var progressBar = Ext.Msg.wait('<%= tjs('form.performing_task') %>');
-          
+
           Ext.Ajax.request({
             url: '<%= url_for :controller => 'admin/backups', :action => 'restore' %>',
             success: function(response) {
               progressBar.hide();
               var result = Ext.util.JSON.decode(response.responseText);
-              
+
               if (!result.success) {
                 Ext.MessageBox.show({
                   title: '<%= tjs('form.error.title') %>',
@@ -113,7 +113,7 @@ Ext.onReady(function() {
               } else {
                 Ext.getCmp('backupsGrid').getSelectionModel().clearSelections();
                 Owp.statusUpdater.start();
-              
+
                 Ext.MessageBox.show({
                   title: '<%= tjs('form.info.title') %>',
                   msg: '<%= tjs('admin.backups.form.restore.scheduled') %>',
@@ -139,7 +139,7 @@ Ext.onReady(function() {
       }
     );
   }
-  
+
   function removeBackup() {
     Ext.MessageBox.confirm(
       '<%= tjs('form.confirmation') %>',
@@ -174,7 +174,7 @@ Ext.onReady(function() {
       { name: 'archive_date' }
     ]
   });
-  
+
   var selectionModel = new Ext.grid.CheckboxSelectionModel({
     listeners: {
       selectionchange: function(selectionModel) {
@@ -183,7 +183,7 @@ Ext.onReady(function() {
         } else {
           backupsGrid.removeButton.disable();
         }
-        
+
         if (1 == selectionModel.getCount()) {
           backupsGrid.restoreButton.enable();
         } else {
@@ -199,7 +199,7 @@ Ext.onReady(function() {
     iconCls: 'icon-items-list',
     store: store,
     loadMask: true,
-    tools: [{ 
+    tools: [{
       id: 'refresh',
       handler: function() {
         backupsGrid.getStore().reload();
@@ -207,20 +207,20 @@ Ext.onReady(function() {
     }],
     cm: new Ext.grid.ColumnModel({
       columns: [
-        selectionModel, 
-        { 
+        selectionModel,
+        {
           id: 'archiveDate',
           header: '<%= tjs('admin.backups.grid.column.archive_date') %>',
           sortable: true,
           width: 160,
           dataIndex: 'archive_date'
-        }, { 
+        }, {
           id: 'size',
           header: '<%= tjs('admin.backups.grid.column.size') %>',
           sortable: true,
           width: 100,
           dataIndex: 'size'
-        }, { 
+        }, {
           id: 'description',
           header: '<%= tjs('admin.backups.grid.column.description') %>',
           sortable: true,
@@ -254,7 +254,7 @@ Ext.onReady(function() {
       disabled: true
     }]
   });
-  
+
   Owp.layout.addToCenter(backupsGrid);
 
 });

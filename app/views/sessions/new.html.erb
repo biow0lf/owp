@@ -1,7 +1,7 @@
 <% @page_title = t('login.page_title') %>
 
 <% javascript_tag do -%>
-Ext.onReady(function() {     
+Ext.onReady(function() {
 
   var loginFormSubmitAction = function() {
     loginForm.getForm().submit({
@@ -49,7 +49,7 @@ Ext.onReady(function() {
       name: 'locale',
       width: 210,
       xtype: 'combo',
-      mode: 'local',      
+      mode: 'local',
       hiddenName: 'locale',
       valueField: 'locale',
       value: '<%= I18n.locale %>',
@@ -75,7 +75,7 @@ Ext.onReady(function() {
       html: '<a href="#" onclick="document.location.href = \'<%= restore_password_path %>\'"><%= tjs('login.button_restore_password') %></a>'
     }<% end -%>]
   });
-  
+
   var loginWindow = new Owp.form.BasicFormWindow({
     applyTo: 'login-window',
     title: '<%= tjs('login.window_title', :product => @product_name) %>',
@@ -94,9 +94,9 @@ Ext.onReady(function() {
       handler: loginFormSubmitAction
     }]
   });
-    
+
   loginWindow.show();
-  
+
 });
 <% end -%>
 

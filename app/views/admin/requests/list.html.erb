@@ -23,7 +23,7 @@ Ext.onReady(function() {
         allowBlank: false
       }]
     });
-    
+
     var windowCreateRequest = new Owp.form.BasicFormWindow({
       title: '<%= tjs('admin.requests.form.create.title') %>',
       iconCls: 'icon-window-add',
@@ -59,7 +59,7 @@ Ext.onReady(function() {
         }
       }]
     });
-    
+
     windowCreateRequest.show();
   }
 
@@ -82,7 +82,7 @@ Ext.onReady(function() {
       }
     );
   }
-  
+
   function seeDetails() {
     var selectedNode = Ext.getCmp('requestsGrid').getSelectionModel().getSelected();
     document.location.href = '<%= url_for :controller => 'admin/requests', :action => 'show' %>' + '?id=' + selectedNode.id;
@@ -112,7 +112,7 @@ Ext.onReady(function() {
         } else {
           requestsGrid.removeButton.disable();
         }
-        
+
         if (1 == selectionModel.getCount()) {
           requestsGrid.detailsButton.enable();
         } else {
@@ -121,7 +121,7 @@ Ext.onReady(function() {
       }
     }
   });
-  
+
   <% if !@current_user.can_handle_requests? %>
     selectionModel = new Ext.grid.RowSelectionModel({
       listeners: {
@@ -160,7 +160,7 @@ Ext.onReady(function() {
         align: 'center',
         sortable: true,
         dataIndex: 'opened'
-      }, { 
+      }, {
         id: 'id',
         header: '<%= tjs('admin.requests.grid.column.id') %>',
         width: 50,
@@ -169,7 +169,7 @@ Ext.onReady(function() {
         renderer: function(identity, metadata, record) {
           return "<a href='" + BASE_URL + "/admin/requests/show?id=" + identity + "'>" + identity + "</a>";
         }
-      }, { 
+      }, {
         id: 'subject',
         header: '<%= tjs('admin.requests.grid.column.subject') %>',
         sortable: true,
@@ -228,7 +228,7 @@ Ext.onReady(function() {
       disabled: true
     }]
   });
-  
+
   Owp.layout.addToCenter(requestsGrid);
 });
 <% end -%>
