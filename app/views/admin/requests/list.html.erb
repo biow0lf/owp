@@ -1,7 +1,7 @@
 <% @page_title = t('admin.requests.title') %>
 <% @page_icon = 'comment_edit.png' %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   function createRequest() {
@@ -134,7 +134,7 @@ Ext.onReady(function() {
         }
       }
     });
-  <% end -%>
+  <% end %>
 
   var requestsGrid = new Ext.grid.GridPanel({
     id: 'requestsGrid',
@@ -148,7 +148,7 @@ Ext.onReady(function() {
       }
     }],
     cm: new Ext.grid.ColumnModel([
-      <% if @current_user.can_handle_requests? %> selectionModel, <% end -%>
+      <% if @current_user.can_handle_requests? %> selectionModel, <% end %>
       { 
         id: 'opened',
         header: '<%= tjs('admin.requests.grid.column.opened') %>',
@@ -219,7 +219,7 @@ Ext.onReady(function() {
       icon: '<%= image_path 'delete.png' %>',
       ref: '../removeButton',
       disabled: true
-    }, <% end -%> '-', {
+    }, <% end %> '-', {
       text: '<%= tjs('admin.requests.grid.button.details') %>',
       handler: seeDetails,
       cls: 'x-btn-text-icon',
@@ -231,4 +231,4 @@ Ext.onReady(function() {
 
   Owp.layout.addToCenter(requestsGrid);
 });
-<% end -%>
+<% end %>

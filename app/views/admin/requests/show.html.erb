@@ -1,7 +1,7 @@
 <% @page_title = t('admin.requests.comments.title', :id => @request.id ) + ' - ' + h(@request.subject) %>
 <% @page_icon = 'comment_edit.png' %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   function addComment() {
@@ -135,8 +135,8 @@ Ext.onReady(function() {
         document.location.href = '<%= url_for :controller => 'admin/requests', :action => 'toggle', :request_id => @request.id %>';
       }
     });
-  <% end -%>
+  <% end %>
 
   mainContentCenterPanel.doLayout();
 });
-<% end -%>
+<% end %>

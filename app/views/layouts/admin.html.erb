@@ -1,6 +1,6 @@
 <%= render :partial => 'layouts/header' %>
 
-  <% javascript_tag do -%>
+  <% javascript_tag do %>
     Ext.onReady(function() {
       var formMyProfile = new Owp.form.BasicForm({
         labelWidth: 150,
@@ -30,7 +30,7 @@
           fieldLabel: '<%= tjs('admin.my_profile.confirm_password') %>',
           name: 'password_confirmation',
           inputType: 'password'
-        }, <% end -%> {
+        }, <% end %> {
           fieldLabel: '<%= tjs('admin.my_profile.contact_name') %>',
           name: 'contact_name',
           inputType: 'textfield',
@@ -122,7 +122,7 @@
             expandable: false,
             expanded: true,
             children: <%= @servers_list.to_json %>
-          }, <% end -%> {
+          }, <% end %> {
             cls: 'menu-item',
             text: '<%= tjs('admin.menu.general.my_profile') %>',
             icon: '<%= image_path 'vcard.png' %>',
@@ -138,22 +138,22 @@
             href: '<%= url_for :controller => 'admin/users/list' %>',
             icon: '<%= image_path 'user.png' %>',
             leaf: true
-          }, <% end -%> <% if @current_user.can_create_requests? || @current_user.can_handle_requests? %> {
+          }, <% end %> <% if @current_user.can_create_requests? || @current_user.can_handle_requests? %> {
             cls: 'menu-item',
             text: '<%= tjs('admin.menu.general.requests') %>',
             href: '<%= url_for :controller => 'admin/requests/list' %>',
             icon: '<%= image_path 'comment_edit.png' %>'
-          }, <% end -%> <% if @current_user.can_view_tasks? %> {
+          }, <% end %> <% if @current_user.can_view_tasks? %> {
             cls: 'menu-item',
             text: '<%= tjs('admin.menu.general.tasks') %>',
             href: '<%= url_for :controller => 'admin/tasks/list' %>',
             icon: '<%= image_path 'cog.png' %>'
-          }, <% end -%> <% if @current_user.can_view_logs? || @current_user.can_manage_logs? %> {
+          }, <% end %> <% if @current_user.can_view_logs? || @current_user.can_manage_logs? %> {
             cls: 'menu-item',
             text: '<%= tjs('admin.menu.general.event_log') %>',
             href: '<%= url_for :controller => 'admin/event-log/list' %>',
             icon: '<%= image_path 'book.png' %>'
-          }, <% end -%> {
+          }, <% end %> {
             cls: 'menu-item',
             text: '<%= tjs('admin.menu.general.logout') %>',
             icon: '<%= image_path 'key_go.png' %>',
@@ -205,7 +205,7 @@
           },
           cls: 'x-btn-text-icon',
           icon: '<%= image_path 'zoom.png' %>'
-        }, <% end -%> {
+        }, <% end %> {
           text: '<%= tjs('admin.operations.up_level') %>',
           handler: function() {
             document.location.href = BASE_URL + upLevelLink;
@@ -229,7 +229,7 @@
           afterrender: function() {
             <% if @current_user.superadmin? %>
               Owp.statusUpdater.start();
-            <% end -%>
+            <% end %>
           }
         },
         items: [
@@ -297,7 +297,7 @@
         ]
       });
     });
-  <% end -%>
+  <% end %>
 
   <div id='main-menu'></div>
 

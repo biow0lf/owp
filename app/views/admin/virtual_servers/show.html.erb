@@ -3,7 +3,7 @@
 %>
 <% @page_icon = 'server.png' %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   <%= render :partial => 'edit_form' %>
@@ -162,7 +162,7 @@ Ext.onReady(function() {
         fn: function() {
           <% if @current_user.superadmin? %>
             windowLimitsForm.submitButton.handler();
-          <% end -%>
+          <% end %>
         }
       }],
       layout: 'fit',
@@ -241,7 +241,7 @@ Ext.onReady(function() {
           windowLimitsForm.close();
         }
       }];
-    <% end -%>
+    <% end %>
 
     windowLimitsForm = new Ext.Window({
       title: '<%= tjs('admin.virtual_servers.form.limits.title') %>',
@@ -270,7 +270,7 @@ Ext.onReady(function() {
         ],
         data: <%= @virtual_server.hardware_server.os_templates.map { |item| { :id => item.id, :name => item.name, }}.to_json %>
       });
-    <% end -%>
+    <% end %>
 
     var formReinstall = new Owp.form.BasicForm({
       labelWidth: 150,
@@ -309,7 +309,7 @@ Ext.onReady(function() {
         editable: false,
         store: osTemplatesStore,
         value: '<%= @virtual_server.orig_os_template %>'
-      }<% end -%>]
+      }<% end %>]
     });
 
     var windowReinstall = new Owp.form.BasicFormWindow({
@@ -800,7 +800,7 @@ Ext.onReady(function() {
       ref: '../reinstallButton',
       handler: reinstallAction
     });
-  <% end -%>
+  <% end %>
 
   <% if AppConfig.backups.allow_for_users and @current_user.can_backup_ve? %>
     toolsButtons.push({
@@ -809,7 +809,7 @@ Ext.onReady(function() {
       ref: '../backupButton',
       handler: backupAction
     });
-  <% end -%>
+  <% end %>
 
   <% if @current_user.superadmin? %>
     toolsButtons.push({
@@ -818,7 +818,7 @@ Ext.onReady(function() {
       ref: '../cloneButton',
       handler: cloneAction
     });
-  <% end -%>
+  <% end %>
 
   <% if @current_user.superadmin? and @migration_targets.length > 0 %>
     toolsButtons.push({
@@ -827,7 +827,7 @@ Ext.onReady(function() {
       ref: '../migrateButton',
       handler: migrateAction
     });
-  <% end -%>
+  <% end %>
 
   <% if @current_user.superadmin? %>
     toolsButtons.push({
@@ -836,7 +836,7 @@ Ext.onReady(function() {
       ref: '../createTemplateButton',
       handler: createTemplateAction
     });
-  <% end -%>
+  <% end %>
 
   <% if @current_user.can_use_ve_console? %>
     toolsButtons.push({
@@ -902,4 +902,4 @@ Ext.onReady(function() {
   mainContentCenterPanel.doLayout()
 
 });
-<% end -%>
+<% end %>

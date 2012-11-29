@@ -1,6 +1,6 @@
 <% @page_title = t('login.page_title') %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   var loginFormSubmitAction = function() {
@@ -61,7 +61,7 @@ Ext.onReady(function() {
         fields: ['locale', 'languageTitle'],
         data: <%= @available_locales.to_json %>
       })
-    }, <% end -%> {
+    }, <% end %> {
       fieldLabel: '<%= tjs('login.remember_me') %>',
       name: 'remember_me',
       xtype: 'checkbox',
@@ -73,7 +73,7 @@ Ext.onReady(function() {
         marginBottom: '10px'
       },
       html: '<a href="#" onclick="document.location.href = \'<%= restore_password_path %>\'"><%= tjs('login.button_restore_password') %></a>'
-    }<% end -%>]
+    }<% end %>]
   });
 
   var loginWindow = new Owp.form.BasicFormWindow({
@@ -98,6 +98,6 @@ Ext.onReady(function() {
   loginWindow.show();
 
 });
-<% end -%>
+<% end %>
 
 <div id='login-window'></div>

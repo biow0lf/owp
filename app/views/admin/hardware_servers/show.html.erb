@@ -1,7 +1,7 @@
 <% @page_title = t('admin.hardware_servers.show.title', :name => @hardware_server.host) %>
 <% @page_icon = 'server.png' %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   <%= render :partial => 'admin/virtual_servers/edit_form' %>
@@ -341,4 +341,4 @@ Ext.onReady(function() {
 
   mainContentCenterPanel.doLayout();
 });
-<% end -%>
+<% end %>

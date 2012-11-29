@@ -1,7 +1,7 @@
 <% @page_title = t('admin.users.title') %>
 <% @page_icon = 'user.png' %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   function showUserEditForm(mode) {
@@ -35,7 +35,7 @@ Ext.onReady(function() {
         name: 'password_confirmation',
         inputType: 'password',
         allowBlank: ('edit' == mode)
-      }, <% end -%> {
+      }, <% end %> {
         fieldLabel: '<%= tjs('admin.users.form.create.field.contact_name') %>',
         name: 'contact_name',
         inputType: 'textfield'
@@ -335,4 +335,4 @@ Ext.onReady(function() {
 
   mainContentCenterPanel.doLayout();
 });
-<% end -%>
+<% end %>

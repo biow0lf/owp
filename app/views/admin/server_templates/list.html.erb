@@ -1,7 +1,7 @@
 <% @page_title = t('admin.server_templates.title', { :name => @hardware_server.host }) %>
 <% @page_icon = 'package.png' %>
 
-<% javascript_tag do -%>
+<% javascript_tag do %>
 Ext.onReady(function() {
 
   function showServerTemplateEditForm(mode) {
@@ -366,4 +366,4 @@ Ext.onReady(function() {
   Owp.layout.addToCenter(serverTemplatesGrid);
 
 });
-<% end -%>
+<% end %>
