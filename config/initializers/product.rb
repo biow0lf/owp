@@ -1,0 +1,2 @@
+PRODUCT_NAME = 'OpenVZ Web Panel'
+PRODUCT_VERSION = '2.5'
