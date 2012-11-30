@@ -14,6 +14,7 @@ module Owp
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -42,8 +43,8 @@ module Owp
   end
 end
 
-# TODO: check this later
-PRODUCT_NAME = 'OpenVZ Web Panel'
-PRODUCT_VERSION = '2.5'
-
-Watchdog = WatchdogClient.new unless defined? WATCHDOG_DAEMON
+## TODO: check this later
+#PRODUCT_NAME = 'OpenVZ Web Panel'
+#PRODUCT_VERSION = '2.5'
+#
+#Watchdog = WatchdogClient.new unless defined? WATCHDOG_DAEMON
