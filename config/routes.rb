@@ -1,14 +1,15 @@
-ActionController::Routing::Routes.draw do |map|
-  # The priority is based upon order of creation: first created -> highest priority.
+Owp::Application.routes.draw do
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
 
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.restore_password '/restore-password', :controller => 'sessions', :action => 'restore_password'
-  map.reset_password '/reset-password', :controller => 'sessions', :action => 'reset_password'
+  match 'logout' => 'sessions#destroy'
+  match 'login' => 'sessions#new', :as => 'login'
+  match 'restore-password' => 'sessions#restore_password', :as => 'restore_password'
+  match 'reset-password' => 'sessions#reset_password'
 
-  map.resource :session
+  resource :session
 
-  map.namespace :admin do |admin|
+  namespace :admin do |admin|
     %w{
       hardware_servers
       virtual_servers
@@ -18,12 +19,17 @@ ActionController::Routing::Routes.draw do |map|
       ip_addresses
       ip_pools
     }.each do |controller|
-      admin.connect "/#{controller.sub('_', '-')}/:action", :controller => controller
+      #admin.connect "/#{controller.sub('_', '-')}/:action", :controller => controller
+      match "/#{controller.sub('_', '-')}/:action" => "/#{controller.sub('_', '-')}/:action"
     end
   end
 
-  map.connect ':controller/:action'
+  match ':controller/:action'
 
-  map.root :login
-  map.connect '*anything', :controller => 'sessions', :action => 'new'
+  root :to => 'sessions#new'
+#  map.connect '*anything', :controller => 'sessions', :action => 'new'
+
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 end
