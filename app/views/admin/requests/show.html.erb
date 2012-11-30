@@ -62,7 +62,7 @@ Ext.onReady(function() {
     url: '<%= url_for :controller => 'admin/requests', :action => 'comments_list_data', :id => @request.id %>',
     root: 'data',
     autoLoad: true,
-    data: <%= { :data => @comments }.to_json %>,
+    data: <%= { :data => @comments }.to_json.html_safe %>,
     sortInfo: { field: 'created_at', direction: 'ASC' },
     fields: [
       { name: 'id' },

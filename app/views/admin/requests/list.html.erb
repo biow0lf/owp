@@ -92,7 +92,7 @@ Ext.onReady(function() {
     url: '<%= url_for :controller => 'admin/requests', :action => 'list_data' %>',
     root: 'data',
     autoLoad: true,
-    data: <%= { :data => @requests_list }.to_json %>,
+    data: <%= { :data => @requests_list }.to_json.html_safe %>,
     sortInfo: { field: 'id', direction: 'DESC' },
     fields: [
       { name: 'id' },

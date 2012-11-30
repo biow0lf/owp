@@ -201,7 +201,7 @@ Ext.onReady(function() {
     url: '<%= url_for :controller => 'admin/hardware-servers', :action => 'list_data' %>',
     root: 'data',
     autoLoad: true,
-    data: <%= { :data => @hardware_servers_list }.to_json %>,
+    data: <%= { :data => @hardware_servers_list }.to_json.html_safe %>,
     sortInfo: { field: 'host', direction: 'ASC' },
     fields: [
       { name: 'id' },

@@ -55,7 +55,7 @@ Ext.onReady(function() {
   container.add(profilePanel);
 
   <% if @current_user.superadmin? %>
-    var storeData = <%= @stats_data.to_json %> ;
+    var storeData = <%= @stats_data.to_json.html_safe %>;
 
     var store = new Ext.data.ArrayStore({
       fields: [
