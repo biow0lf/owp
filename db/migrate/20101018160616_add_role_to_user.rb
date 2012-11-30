@@ -1,5 +1,5 @@
 class AddRoleToUser < ActiveRecord::Migration
-  def up
+  def self.up
     add_column :users, :role_id, :integer
 
     superadmin_role = Role.find_by_name('superadmin')
@@ -14,7 +14,7 @@ class AddRoleToUser < ActiveRecord::Migration
     remove_column :users, :role_type
   end
 
-  def down
+  def self.down
     add_column :users, :role_type, :integer, :default => 1
     remove_column :users, :role_id
   end

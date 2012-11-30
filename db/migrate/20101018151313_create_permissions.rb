@@ -1,5 +1,5 @@
 class CreatePermissions < ActiveRecord::Migration
-  def up
+  def self.up
     create_table :permissions do |t|
       t.string :name
     end
@@ -16,7 +16,7 @@ class CreatePermissions < ActiveRecord::Migration
     Permission.create({ :name => 'manage_users' })
   end
 
-  def down
+  def self.down
     drop_table :permissions
   end
 end

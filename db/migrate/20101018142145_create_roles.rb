@@ -1,5 +1,5 @@
 class CreateRoles < ActiveRecord::Migration
-  def up
+  def self.up
     create_table :roles do |t|
       t.string :name
       t.boolean :built_in
@@ -9,7 +9,7 @@ class CreateRoles < ActiveRecord::Migration
     Role.create({ :name => 've_admin', :built_in => true, :limit_backups => -1 })
   end
 
-  def down
+  def self.down
     drop_table :roles
   end
 end

@@ -1,5 +1,5 @@
 class CreateBackups < ActiveRecord::Migration
-  def up
+  def self.up
     create_table :backups do |t|
       t.column :name, :string
       t.column :description, :string
@@ -8,7 +8,7 @@ class CreateBackups < ActiveRecord::Migration
     end
   end
 
-  def down
+  def self.down
     drop_table :backups
   end
 end

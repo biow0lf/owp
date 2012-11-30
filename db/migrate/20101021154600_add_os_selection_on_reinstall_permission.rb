@@ -1,5 +1,5 @@
 class AddOsSelectionOnReinstallPermission < ActiveRecord::Migration
-  def up
+  def self.up
     Permission.create({ :name => 'select_os_on_reinstall' })
 
     superadmin_role = Role.find_by_name('superadmin')
@@ -9,7 +9,7 @@ class AddOsSelectionOnReinstallPermission < ActiveRecord::Migration
     ve_admin_role.permissions << Permission.find_by_name('select_os_on_reinstall')
   end
 
-  def down
+  def self.down
     Permission.find_by_name('select_os_on_reinstall').delete
   end
 end

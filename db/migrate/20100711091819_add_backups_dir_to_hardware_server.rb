@@ -1,9 +1,9 @@
 class AddBackupsDirToHardwareServer < ActiveRecord::Migration
-  def up
+  def self.up
     add_column :hardware_servers, :backups_dir, :string
   end
 
-  def down
+  def self.down
     remove_column :hardware_servers, :backups_dir
   end
 end

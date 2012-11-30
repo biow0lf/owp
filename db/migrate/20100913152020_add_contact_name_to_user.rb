@@ -1,9 +1,9 @@
 class AddContactNameToUser < ActiveRecord::Migration
-  def up
+  def self.up
     add_column :users, :contact_name, :string
   end
 
-  def down
+  def self.down
     remove_column :users, :contact_name
   end
 end

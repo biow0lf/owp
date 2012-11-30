@@ -1,5 +1,5 @@
 class CreateEventLogs < ActiveRecord::Migration
-  def up
+  def self.up
     create_table :event_logs do |t|
       t.column :level, :integer
       t.column :message, :string
@@ -8,7 +8,7 @@ class CreateEventLogs < ActiveRecord::Migration
     end
   end
 
-  def down
+  def self.down
     drop_table :event_logs
   end
 end

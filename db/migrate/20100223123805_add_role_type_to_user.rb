@@ -1,9 +1,9 @@
 class AddRoleTypeToUser < ActiveRecord::Migration
-  def up
+  def self.up
     add_column :users, :role_type, :integer, :default => 1
   end
 
-  def down
+  def self.down
     remove_column :users, :role_type
   end
 end

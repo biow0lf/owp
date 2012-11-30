@@ -1,9 +1,9 @@
 class RemoveOsTemplateIdFromVirtualServer < ActiveRecord::Migration
-  def up
+  def self.up
     remove_column :virtual_servers, :os_template_id
   end
 
-  def down
+  def self.down
     add_column :virtual_servers, :os_template_id, :integer
   end
 end

@@ -1,9 +1,9 @@
 class AddIpAddressToEventLog < ActiveRecord::Migration
-  def up
+  def self.up
     add_column :event_logs, :ip_address, :string
   end
 
-  def down
+  def self.down
     remove_column :event_logs, :ip_address
   end
 end

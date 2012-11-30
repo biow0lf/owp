@@ -1,5 +1,5 @@
 class CreateVirtualServers < ActiveRecord::Migration
-  def up
+  def self.up
     create_table :virtual_servers do |t|
       t.column :identity, :integer
       t.column :ip_address, :string, :limit => 255
@@ -10,7 +10,7 @@ class CreateVirtualServers < ActiveRecord::Migration
     end
   end
 
-  def down
+  def self.down
     drop_table :virtual_servers
   end
 end
