@@ -4,11 +4,14 @@ class AddLimitBackupsToRole < ActiveRecord::Migration
 
     Role.reset_column_information
     ve_admin_role = Role.find_by_name('ve_admin')
-    ve_admin_role.limit_backups = 3
-    ve_admin_role.save
+    if ve_admin_role
+      ve_admin_role.limit_backups = 3
+      ve_admin_role.save
+    end
   end
 
   def self.down
     remove_column :roles, :limit_backups
   end
 end
+

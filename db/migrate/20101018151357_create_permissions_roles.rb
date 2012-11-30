@@ -6,11 +6,15 @@ class CreatePermissionsRoles < ActiveRecord::Migration
     end
 
     superadmin_role = Role.find_by_name('superadmin')
-    superadmin_role.permissions = Permission.all
+    if superadmin_role
+      superadmin_role.permissions = Permission.all
+    end
 
     ve_admin_role = Role.find_by_name('ve_admin')
-    %w( use_ve_console backup_ve reinstall_ve create_requests ).each do |perm_name|
-      ve_admin_role.permissions << Permission.find_by_name(perm_name)
+    if ve_admin_role
+      %w( use_ve_console backup_ve reinstall_ve create_requests ).each do |perm_name|
+        ve_admin_role.permissions << Permission.find_by_name(perm_name)
+      end
     end
   end
 
