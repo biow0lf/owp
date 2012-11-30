@@ -1,7 +1,7 @@
 <% @page_title = t('admin.ip_addresses.title') %>
 <% @page_icon = 'network_adapter.png' %>
 
-<% javascript_tag do %>
+<%= javascript_tag do %>
 Ext.onReady(function() {
 
   var store = new Ext.data.JsonStore({
