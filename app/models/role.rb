@@ -4,7 +4,7 @@ class Role < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
-  attr_accessible :name, :limit_backups
+  attr_accessible :name, :limit_backups, :built_in
 
   validates_numericality_of :limit_backups, :only_integer => true
 
@@ -22,5 +22,5 @@ class Role < ActiveRecord::Base
   def limit_backups=(value)
     write_attribute :limit_backups, (value.to_i.to_s != value.to_s ? -1 : value)
   end
-
 end
+
