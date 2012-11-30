@@ -99,8 +99,7 @@ class SessionsController < ApplicationController
 
   private
 
-    def app_layout
-      iphone? ? 'iphone' : 'application'
-    end
-
+  def app_layout
+    iphone? ? 'iphone' : 'application'
+  end
 end
