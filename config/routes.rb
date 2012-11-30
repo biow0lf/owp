@@ -3,9 +3,9 @@ Owp::Application.routes.draw do
   # first created -> highest priority.
 
   match 'logout' => 'sessions#destroy'
-  match 'login' => 'sessions#new', :as => 'login'
+  match 'login' => 'sessions#new'
   match 'restore-password' => 'sessions#restore_password', :as => 'restore_password'
-  match 'reset-password' => 'sessions#reset_password'
+  match 'reset-password' => 'sessions#reset_password', :as => 'reset_password'
 
   resource :session
 
@@ -19,8 +19,7 @@ Owp::Application.routes.draw do
       ip_addresses
       ip_pools
     }.each do |controller|
-      #admin.connect "/#{controller.sub('_', '-')}/:action", :controller => controller
-      match "/#{controller.sub('_', '-')}/:action" => "/#{controller.sub('_', '-')}/:action"
+      match "/#{controller.sub('_', '-')}/:action" => "#{controller.sub('_', '-')}"
     end
   end
 
@@ -33,3 +32,4 @@ Owp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+
