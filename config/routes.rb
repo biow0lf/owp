@@ -19,7 +19,7 @@ Owp::Application.routes.draw do
       ip_addresses
       ip_pools
     }.each do |controller|
-      match "/#{controller.sub('_', '-')}/:action" => "#{controller.sub('_', '-')}"
+      match "/#{controller.sub('_', '-')}/:action" => "#{controller.sub('-', '_')}"
     end
   end
 
